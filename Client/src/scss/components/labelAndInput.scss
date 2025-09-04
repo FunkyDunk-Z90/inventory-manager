@@ -1,0 +1,23 @@
+@use '../mixins.scss' as *;
+@use '../variables.scss' as *;
+
+.wrapper.label-input {
+    display: grid;
+    gap: $small;
+}
+
+.input-content {
+    background-color: $light;
+    max-width: 100%;
+    min-height: 40px;
+    caret-color: $primary;
+    padding-inline: $large;
+    font-size: 1rem;
+    text-align: center;
+
+    @include light-border;
+
+    &:focus {
+        outline-color: $primary;
+    }
+}

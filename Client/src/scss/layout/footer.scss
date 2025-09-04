@@ -1,0 +1,9 @@
+@use '../variables.scss' as *;
+
+.wrapper.footer {
+    display: grid;
+    border-top: $border-dark;
+    padding-top: $large;
+    gap: $large;
+    justify-items: center;
+}

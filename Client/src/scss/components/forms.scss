@@ -1,0 +1,27 @@
+@use '../mixins.scss' as *;
+@use '../variables.scss' as *;
+
+.form {
+    display: grid;
+    background-color: $light;
+    padding: $medium;
+    gap: $large;
+    height: max-content;
+    justify-items: center;
+}
+
+.results-container {
+    display: grid;
+    background-color: $dark;
+    height: 100%;
+    align-items: center;
+
+    @include dark-border;
+}
+
+.wrapper.login {
+    display: grid;
+    align-self: center;
+    gap: $small;
+    justify-items: center;
+}

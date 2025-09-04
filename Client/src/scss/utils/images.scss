@@ -1,0 +1,16 @@
+@use '../variables.scss' as *;
+
+.logo {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    // cursor: pointer;
+
+    &:active {
+        transform: $click;
+    }
+
+    &.small {
+        width: 60px;
+        box-shadow: 0px 2px 3px 0px;
+    }
+}

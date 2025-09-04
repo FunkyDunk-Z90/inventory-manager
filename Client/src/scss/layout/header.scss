@@ -1,0 +1,21 @@
+@use '../variables.scss' as *;
+
+.wrapper.header {
+    display: grid;
+    position: relative;
+    border-bottom: $border-dark;
+    min-height: 80px;
+    align-items: center;
+    justify-items: center;
+    gap: $medium;
+    padding-block: $large;
+
+    @media (min-width: $tablet) {
+        #header-logo {
+            position: absolute;
+            top: 50%;
+            left: $medium;
+            transform: translateY(-50%);
+        }
+    }
+}

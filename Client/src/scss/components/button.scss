@@ -1,0 +1,25 @@
+@use '../variables.scss' as *;
+@use '../mixins.scss' as *;
+
+.btn {
+    cursor: pointer;
+    border: 1px solid $dark;
+    border-radius: 4px;
+    padding: $small;
+    font-size: 1rem;
+    min-width: 70px;
+    max-height: max-content;
+    background-color: $primary;
+    color: $light;
+
+    @include dark-border;
+
+    &:active {
+        transform: $click;
+    }
+
+    &:hover {
+        opacity: 0.8;
+        transform: translateY(0.1rem);
+    }
+}

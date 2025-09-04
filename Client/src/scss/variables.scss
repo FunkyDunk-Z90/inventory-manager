@@ -1,0 +1,29 @@
+// Colours
+$dark: #201f1f;
+$light: #eceaea;
+$primary: rgb(97, 63, 97);
+$red: rgb(122, 20, 20);
+$blue: rgb(33, 87, 131);
+$green: rgb(47, 102, 47);
+$grey: rgb(116, 115, 115);
+
+// Spacings
+$small: 0.3rem;
+$medium: 0.5rem;
+$large: 1rem;
+$xlarge: 1.5rem;
+
+// Border & Radius
+$border-dark: 1px solid $dark;
+$border-light: 1px solid $light;
+$border-radius: 4px;
+
+// Screen Sizes
+$tablet: 768px;
+$desktop: 1025px;
+
+// Layouts
+$gallery: repeat(auto-fit, minmax(calc(100px), 1fr));
+
+// Actionis
+$click: translateY(2px);

@@ -1,0 +1,18 @@
+@use '../variables.scss' as *;
+
+.gallery-container {
+    max-width: $tablet;
+    container-type: inline-size;
+    width: 100%;
+    align-items: center;
+}
+
+.gallery {
+    display: grid;
+    gap: $medium;
+    align-items: center;
+
+    &.small {
+        grid-template-columns: repeat(auto-fit, minmax(calc(70px), 1fr));
+    }
+}
