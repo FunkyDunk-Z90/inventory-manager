@@ -19,7 +19,7 @@ function LabelAndInput({ inputObj, labelObj }: iLabelAndInput) {
                 onChange={handleChange}
                 value={value}
                 required
-                autoComplete="off"
+                autoComplete="on"
             />
             {handleReset ? (
                 <div className="wrapper btn-input">

@@ -1,4 +1,4 @@
-import { Navigate } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router-dom'
 
 //Context
 import { useAuthContext } from '../../hooks/auth/useAuthContext'
@@ -13,20 +13,17 @@ interface iLodaingComponent {
 
 function LoadingComponent({ component, authUrls }: iLodaingComponent) {
     const { isLoading, user } = useAuthContext()
-    const pathname = window.location.pathname
+    const location = useLocation()
+    const pathname = location.pathname
 
-    const authorized = authUrls.map((url) => {
-        return url === pathname
-    })
-
-    const isAllowed = authorized.includes(true)
+    const isAllowed = authUrls.some((url) => pathname.startsWith(url))
 
     if (isLoading) {
         return <Spinner />
     }
 
     if (user && isAllowed) {
-        return <Navigate to="/" replace={true} />
+        return <Navigate to="/dashboard" replace={true} />
     }
 
     if (!user && !isAllowed) {

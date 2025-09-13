@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
 
 import './scss/app.scss'
 
@@ -11,7 +10,7 @@ import AuthRouter from './routes/AuthRouter'
 import { useAuthContext } from './hooks/auth/useAuthContext'
 
 // Hooks
-import { useDataFetch } from './hooks/useDataFetch'
+import { useAuthFetch } from './hooks/auth/useAuthFetch'
 
 // Auth
 import LoadingComponent from './components/auth/LoadingComponent'
@@ -22,11 +21,14 @@ import Footer from './components/layout/Footer'
 
 function App() {
     const { user } = useAuthContext()
-    const { dataFetch } = useDataFetch()
-    const authorizedUrls = ['/login', '/forgot-password', '/reset-password']
+    const { authFetch } = useAuthFetch()
+    const authorizedUrls = [
+        '/login',
+        '/forgot-password',
+        '/reset-password',
+        '/sign-up',
+    ]
     const routerComponent = user ? <AppRouter /> : <AuthRouter />
-
-    console.log(routerComponent)
 
     useEffect(
         () => {
@@ -46,7 +48,7 @@ function App() {
     )
 
     useEffect(() => {
-        dataFetch({
+        authFetch({
             url: 'users/is-logged-in',
             authType: 'isLoggedIn',
             requestType: 'POST',
@@ -57,17 +59,10 @@ function App() {
         <section className="wrapper body">
             <Header businessName="My Webpage" />
             <section className="wrapper content">
-                <Routes>
-                    <Route
-                        path="*"
-                        element={
-                            <LoadingComponent
-                                component={routerComponent}
-                                authUrls={authorizedUrls}
-                            />
-                        }
-                    />
-                </Routes>
+                <LoadingComponent
+                    component={routerComponent}
+                    authUrls={authorizedUrls}
+                />
             </section>
             <Footer
                 businessName="My Webpage"

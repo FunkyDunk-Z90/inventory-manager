@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 // Hooks
-import { useDataFetch } from '../../hooks/useDataFetch'
+import { useAuthFetch } from '../../hooks/auth/useAuthFetch'
 
 import Form from '../utils/Form'
 
@@ -13,19 +13,23 @@ const formDataInit: iLoginData = {
 
 function Login() {
     const [formData, setFormData] = useState<iLoginData>(formDataInit)
-    const { dataFetch } = useDataFetch()
+    const { authFetch } = useAuthFetch()
+    const navigate = useNavigate()
 
-    const handleLogin = (e: tFormEvent) => {
+    const handleLogin = async (e: tFormEvent) => {
         e.preventDefault()
 
-        dataFetch({
+        await authFetch({
             requestType: 'POST',
             credentials: true,
             url: 'users/login',
             dataToSend: formData,
+            authType: 'login',
         })
 
         setFormData(formDataInit)
+
+        navigate('/dashboard', { replace: true })
     }
 
     const handleChange = (e: tInputEvent) => {
@@ -67,6 +71,9 @@ function Login() {
             />
             <Link to={'/forgot-password'} replace={true}>
                 Forgot Password
+            </Link>
+            <Link to={'/sign-up'} replace={true}>
+                Sign Up
             </Link>
         </div>
     )

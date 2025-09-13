@@ -3,6 +3,8 @@ import { useAuthContext } from './useAuthContext'
 import axios from 'axios'
 import type { AxiosError, AxiosResponse } from 'axios'
 
+import { userData } from '../../data/userData'
+
 export const useAuthFetch = () => {
     const { dispatchUserState, setIsLoading } = useAuthContext()
     const [error, setError] = useState(null)
@@ -17,7 +19,7 @@ export const useAuthFetch = () => {
 
             switch (requestType) {
                 case 'GET':
-                    response = await axios.get(`/api/v2/${url}`, {
+                    response = await axios.get(`/api/v1/${url}`, {
                         headers: {
                             'Content-Type': 'application/json',
                         },
@@ -25,7 +27,7 @@ export const useAuthFetch = () => {
                     })
                     break
                 case 'POST':
-                    response = await axios.post(`/api/v2/${url}`, dataToSend, {
+                    response = await axios.post(`/api/v1/${url}`, dataToSend, {
                         headers: {
                             'Content-Type': 'application/json',
                         },
@@ -33,7 +35,7 @@ export const useAuthFetch = () => {
                     })
                     break
                 case 'PATCH':
-                    response = await axios.patch(`/api/v2/${url}`, dataToSend, {
+                    response = await axios.patch(`/api/v1/${url}`, dataToSend, {
                         headers: {
                             'Content-Type': 'application/json',
                         },
@@ -41,7 +43,7 @@ export const useAuthFetch = () => {
                     })
                     break
                 case 'DELETE':
-                    response = await axios.delete(`/api/v2/${url}`, {
+                    response = await axios.delete(`/api/v1/${url}`, {
                         headers: {
                             'Content-Type': 'application/json',
                         },
@@ -96,11 +98,14 @@ export const useAuthFetch = () => {
                 axios.isAxiosError<AxiosError, Record<string, unknown>>(error)
             ) {
                 if (error.response?.status === 500) {
-                    dispatchUserState({ type: 'CLEAR_STATE' })
                     console.log("Can't connect to Server")
+                    // !!! MUST CHANGE FOR PRODUCTION !!!
+                    dispatchUserState({
+                        type: 'SET_STATE',
+                        payload: userData,
+                    })
                     setIsLoading(false)
                 } else {
-                    dispatchUserState({ type: 'CLEAR_STATE' })
                     console.log('User not loggedd in')
                     setIsLoading(false)
                 }
@@ -108,6 +113,8 @@ export const useAuthFetch = () => {
                 console.error(error)
                 setIsLoading(false)
             }
+            // !!! MUST CHANGE FOR PRODUCTION !!!
+            // dispatchUserState({ type: 'CLEAR_STATE' })
         }
     }
 

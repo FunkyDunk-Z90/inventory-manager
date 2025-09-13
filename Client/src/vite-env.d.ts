@@ -55,7 +55,13 @@ interface iSignUpData extends iLoginData {
     passwordConfirm: string
 }
 
-type tData = iLoginData | iSignUpData | iUpdateData | iPasswordReset | string
+type tData =
+    | iLoginData
+    | iSignUpData
+    | iUpdateData
+    | iPasswordReset
+    | string
+    | iItem
 
 //---------- Crud Ops ----------
 
@@ -85,9 +91,9 @@ interface iUser {
     lastName: string
     username: string
     email: string
-    avatarURL: string
+    avatarURL?: string
     password: string
-    passwordConfirm: string
+    passwordConfirm?: string
 }
 
 //----------- Reducer Types -----------
@@ -107,6 +113,16 @@ type tUserReducer = SetUserState | ClearUserState
 
 //---------- Forms ----------
 
+type tFormComponents = iLabelAndInput | iDropdown | iSelections
+
+interface iFormProps {
+    formComponents: tFormComponents[]
+    handleSubmit: (e: FormEvent<HTMLFormElement>) => void
+    onSelect?: (option: string) => void
+    error?: string
+    buttonText: string
+}
+
 interface iLabel {
     label: string
     htmlFor: string
@@ -125,4 +141,39 @@ interface iInput {
 interface iLabelAndInput {
     labelObj?: iLabel
     inputObj: iInput
+}
+
+interface iDropdown {
+    dropdownLabel?: string
+    placeholder?: string
+    onSelect: (option: string) => void
+    options: string[]
+}
+
+interface iSelections {
+    selectionPlaceholder?: string
+    selections: string[]
+    options: string[]
+    onChange: (values: string[]) => void
+}
+
+//---------- Inventory Manager ----------
+
+// -- Item
+
+interface iItem {
+    id?: string
+    itemName: string
+    itemCategory: 'food' | 'drink' | 'product' | 'misc' | string
+    itemTags: string[]
+    itemPrice: number
+    itemDetails: string
+    itemMacros?: iMacros
+}
+
+interface iMacros {
+    calories: number
+    protein: number
+    carbs: number
+    fats: number
 }

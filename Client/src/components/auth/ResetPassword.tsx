@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { useDataFetch } from '../../hooks/useDataFetch'
+import { useAuthFetch } from '../../hooks/auth/useAuthFetch'
 
 import Form from '../utils/Form'
 
@@ -12,12 +12,12 @@ const formDataInit: iPasswordReset = {
 
 function ResetPassword() {
     const [formData, setFormData] = useState<iPasswordReset>(formDataInit)
-    const { dataFetch } = useDataFetch()
+    const { authFetch } = useAuthFetch()
 
     const handleResetPassword = (e: tFormEvent) => {
         e.preventDefault()
 
-        dataFetch({
+        authFetch({
             requestType: 'POST',
             credentials: true,
             url: 'users/reset-password',

@@ -52,17 +52,10 @@ export const useDataFetch = () => {
                     throw new Error('Invalid Request Type')
             }
 
-            console.log(response)
-
             //---------- GET ----------
             if (response.status === 200) {
                 const { data } = response
-                const { user } = data
-
-                dispatchUserState({
-                    type: 'SET_STATE',
-                    payload: user,
-                })
+                console.log(data)
 
                 setIsLoading(false)
             } else {
@@ -78,19 +71,13 @@ export const useDataFetch = () => {
                     console.log("Can't connect to Server")
                     setIsLoading(false)
                 } else {
-                    dispatchUserState({ type: 'CLEAR_STATE' })
-                    localStorage.clear()
-                    console.log('User not loggedd in')
+                    console.log('Failed to create Doc')
                     setIsLoading(false)
                 }
             } else {
                 console.error(error)
                 setIsLoading(false)
             }
-
-            dispatchUserState({
-                type: 'CLEAR_STATE',
-            })
         }
     }
 

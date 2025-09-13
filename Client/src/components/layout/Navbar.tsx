@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 // Hooks
-import { useDataFetch } from '../../hooks/useDataFetch'
+import { useAuthFetch } from '../../hooks/auth/useAuthFetch'
 
 // Utils
 import MyButton from '../utils/MyButton'
@@ -13,7 +13,7 @@ function Navbar() {
     const [isActive, setIsActive] = useState(false)
     const [openStatus, setOpenStatus] = useState('')
     const navbarRef = useRef<HTMLDivElement>(null)
-    const { dataFetch } = useDataFetch()
+    const { authFetch } = useAuthFetch()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -65,7 +65,7 @@ function Navbar() {
     }
 
     const handleLogout = () => {
-        dataFetch({
+        authFetch({
             requestType: 'POST',
             url: 'users/logout',
         })
@@ -85,8 +85,11 @@ function Navbar() {
                 <span className="line"></span>
             </div>
             <div className={`wrapper navbar ${openStatus}`}>
-                <Link to={'/'} onClick={toggleNav}>
+                <Link to={'/dashboard'} onClick={toggleNav}>
                     Home
+                </Link>
+                <Link to={'/inventory-management'} onClick={toggleNav}>
+                    Inventory Manager
                 </Link>
                 <Link to={'/contact'} onClick={toggleNav}>
                     Contact

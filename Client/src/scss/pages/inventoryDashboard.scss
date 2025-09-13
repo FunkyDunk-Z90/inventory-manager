@@ -1,0 +1,13 @@
+@use '../mixins.scss' as *;
+@use '../variables.scss' as *;
+
+.wrapper.inventoryDashboard {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: $large;
+    justify-items: center;
+
+    & > h1 {
+        font-size: 1.2rem;
+    }
+}

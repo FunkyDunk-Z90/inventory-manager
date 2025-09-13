@@ -1,5 +1,11 @@
 type tMyButtonTypes = 'button' | 'reset' | 'submit' | undefined
-type tBtnTheme = 'cancel' | 'confirm' | 'submit' | 'clear' | undefined
+type tBtnTheme =
+    | 'cancel'
+    | 'confirm'
+    | 'submit'
+    | 'clear'
+    | 'dropdown'
+    | undefined
 
 interface IMyButton {
     children: React.ReactNode

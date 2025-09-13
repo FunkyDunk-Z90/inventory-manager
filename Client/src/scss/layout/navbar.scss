@@ -6,11 +6,14 @@
     gap: $medium;
     position: absolute;
     top: 100%;
-    width: 120px;
-    left: -120px;
+    width: 220px;
+    min-width: max-content;
+    left: -220px;
     padding: $large;
     border-right: $border-dark;
     border-bottom: $border-dark;
+    border-top: $border-dark;
+    background-color: $light;
 
     @media (min-width: $tablet) {
         position: relative;

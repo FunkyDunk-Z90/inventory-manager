@@ -22,4 +22,18 @@
         opacity: 0.8;
         transform: translateY(0.1rem);
     }
+
+    &.clear {
+        background: none;
+        border: none;
+        color: $light;
+        min-width: 30px;
+        min-height: 30px;
+        box-shadow: none;
+
+        &:hover {
+            color: $dark;
+            font-weight: bolder;
+        }
+    }
 }
